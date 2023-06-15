@@ -21,6 +21,7 @@ const SimpleInput = (props) => {
   };
 
   const onBlurHandler = () => {
+    setEnteredNameTouched(true);
     console.log(
       "onBlurHandler, enteredName: " + enteredName + ", and nameRef: " + nameRef.current.value
     );
