@@ -10,7 +10,8 @@ const SimpleInput = (props) => {
   const emailRef = useRef("");
 
   // Name Check
-  const enteredNameisValid = enteredName.trim().length > 0;
+  const atLeastOneNonSpaceCharacterCheck = /\S/;
+  const enteredNameisValid = enteredName.match(atLeastOneNonSpaceCharacterCheck);
   const nameInputIsInvalid = !enteredNameisValid && enteredNameTouched;
 
   // Email Check
@@ -19,7 +20,7 @@ const SimpleInput = (props) => {
   const enteredEmailisValid = enteredEmail.toLowerCase().match(mailformat);
   const emailInputIsInvalid = !enteredEmailisValid && enteredEmailTouched;
 
-  // Forn Check
+  // Form Check
   const formIsValid = enteredNameisValid && enteredEmailisValid; // and any other fields
 
   useEffect(() => {
@@ -60,7 +61,9 @@ const SimpleInput = (props) => {
       alert("email is invalid");
       emailRef.current.focus();
     } else {
-      console.log("submitHandler, enteredName: " + enteredName);
+      setEnteredName(enteredName.trim());
+      setEnteredEmail(enteredEmail.trim());
+      console.log("submitHandler, enteredName: " + enteredName.trim());
       console.log("submitHandler, enteredEmail: " + enteredEmail);
     }
     setEnteredName("");
