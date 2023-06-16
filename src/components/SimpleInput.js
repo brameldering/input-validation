@@ -7,6 +7,7 @@ const SimpleInput = (props) => {
 
   const enteredNameisValid = enteredName.trim().length > 0;
   const nameInputIsInvalid = !enteredNameisValid && enteredNameTouched;
+  const formIsValid = enteredNameisValid; // and any other fields
 
   useEffect(() => {
     console.log("Init useEffect");
@@ -54,7 +55,7 @@ const SimpleInput = (props) => {
       </div>
 
       <div className='form-actions'>
-        <button>Submit</button>
+        <button disabled={!formIsValid}>Submit</button>
       </div>
     </form>
   );
