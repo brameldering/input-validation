@@ -1,4 +1,4 @@
-import useInput from "../hooks/use-input";
+import useInputUseReducer from "../hooks/use-input-usereducer";
 
 const fnValueIsNotEmpty = (value) => value.match(/\S/);
 
@@ -15,7 +15,7 @@ const BasicForm = (props) => {
     firstnameChangeHandler,
     firstnameBlurHandler,
     resetFirstname,
-  ] = useInput(fnValueIsNotEmpty);
+  ] = useInputUseReducer(fnValueIsNotEmpty);
 
   const [
     lastnameValue,
@@ -24,7 +24,7 @@ const BasicForm = (props) => {
     lastnameChangeHandler,
     lastnameBlurHandler,
     resetLastname,
-  ] = useInput(fnValueIsNotEmpty);
+  ] = useInputUseReducer(fnValueIsNotEmpty);
 
   const [
     emailValue,
@@ -33,7 +33,7 @@ const BasicForm = (props) => {
     emailChangeHandler,
     emailBlurHandler,
     resetEmail,
-  ] = useInput(fnEmailIsValid);
+  ] = useInputUseReducer(fnEmailIsValid);
 
   const formIsValid = firstnameIsValid && lastnameIsValid && emailIsValid;
 
