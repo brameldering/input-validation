@@ -1,10 +1,11 @@
-import useInput from "../hooks/use-input";
+import useInputUseReducer from "../hooks/use-input-usereducer";
 
-const fnValueIsNotEmpty = (value) => value.match(/\S/);
+// const fnValueIsNotEmpty = (value) => value.match(/\S/);
+const fnValueIsNotEmpty = (value) => /\S/.test(value);
 
 const fnEmailIsValid = (value) =>
-  value.match(
-    /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+  /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(
+    value
   );
 
 const BasicForm = (props) => {
@@ -15,7 +16,7 @@ const BasicForm = (props) => {
     firstnameChangeHandler,
     firstnameBlurHandler,
     resetFirstname,
-  ] = useInput(fnValueIsNotEmpty);
+  ] = useInputUseReducer(fnValueIsNotEmpty);
 
   const [
     lastnameValue,
@@ -24,7 +25,7 @@ const BasicForm = (props) => {
     lastnameChangeHandler,
     lastnameBlurHandler,
     resetLastname,
-  ] = useInput(fnValueIsNotEmpty);
+  ] = useInputUseReducer(fnValueIsNotEmpty);
 
   const [
     emailValue,
@@ -33,9 +34,14 @@ const BasicForm = (props) => {
     emailChangeHandler,
     emailBlurHandler,
     resetEmail,
-  ] = useInput(fnEmailIsValid);
+  ] = useInputUseReducer(fnEmailIsValid);
 
   const formIsValid = firstnameIsValid && lastnameIsValid && emailIsValid;
+  console.log("firstnameIsValid: " + firstnameIsValid);
+  console.log("lastnameIsValid: " + lastnameIsValid);
+  console.log("emailIsValid: " + emailIsValid);
+  console.log("formIsValid: " + formIsValid);
+  console.log("typeof formIsValid: " + typeof formIsValid);
 
   const submitHandler = (event) => {
     event.preventDefault();
